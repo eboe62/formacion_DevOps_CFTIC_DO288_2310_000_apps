@@ -1,0 +1,12 @@
+FROM registry.access.redhat.com/ubi9/nodejs-18-minimal:1-51
+
+ENV PORT=80
+EXPOSE ${PORT}
+
+USER root
+
+ADD . $HOME
+
+RUN npm ci --omit=dev && rm -rf .npm
+
+CMD npm start
